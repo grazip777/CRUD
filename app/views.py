@@ -26,16 +26,16 @@ def get_user(request):
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 @api_view(["GET"])
-def get_user_by_id(request, id):
-    user = UserInfo.objects.filter(id=id).first
+def get_user_by_id(request, user_id):
+    user = UserInfo.objects.filter(id=user_id).first
     if not user:
         return Response({"message": "User not found!"}, status=status.HTTP_404_NOT_FOUND)
     serializer = UserInfoSerializer(user)
     return Response(serializer.data)
 
 @api_view(["PUT"])
-def update_user(request, id):
-    user = UserInfo.objects.filter(id=id).first
+def update_user(request, user_id):
+    user = UserInfo.objects.filter(id=user_id).first
     if not user:
         return Response({"message": "User not found!"}, status=status.HTTP_404_NOT_FOUND)
     serializer = UserInfoSerializer(user, data=request.data, partial=True)
@@ -45,8 +45,8 @@ def update_user(request, id):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(["DELETE"])
-def delete_user(request, id):
-    user = UserInfo.objects.filter(id=id).first
+def delete_user(request, user_id):
+    user = UserInfo.objects.filter(id=user_id).first
     if not user:
         return Response({"message": "User not found!"}, status=status.HTTP_400_BAD_REQUEST)
     user.delete()
