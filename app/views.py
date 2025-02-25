@@ -13,13 +13,11 @@ def create_game(request):
     if serializer.is_valid():
         user = serializer.save()
         return Response({
+            "username": user.username,
             "name": user.name,
-            "price": user.price,
-            "version": user.version,
-            "date_issue": user.date_issue,
-            "company_name": user.company_name,
-            "id": user.id,
-            "created_at": user.created_at
+            "surname": user.surname,
+            "age": user.age,
+            "birthday": user.birthday,
         }, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
