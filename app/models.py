@@ -8,6 +8,4 @@ class UserInfo(models.Model):
     birthday = models.DateField()
 
     def __str__(self):
-        return UserInfo.username
-
-
+        return self.username
