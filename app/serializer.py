@@ -12,4 +12,4 @@ class UserInfoSerializer(serializers.ModelSerializer):
             fields = "__all__"
 
         def create(self, validated_data):
-            return UserInfo.objects.create(validated_data)
+            return UserInfo.objects.create(**validated_data)
